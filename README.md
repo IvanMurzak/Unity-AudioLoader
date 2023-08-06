@@ -30,7 +30,7 @@ public class AudioLoaderSample : MonoBehaviour
 
     async void Start()
     {
-        // Loading sprite from web, cached for quick load next time
+        // Loading audio file from web, cached for quick load next time
         audioSource.clip = await AudioLoader.LoadAudioClip(audioURL);
 
         // Same loading with auto set to audio
