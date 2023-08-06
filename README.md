@@ -1,118 +1,127 @@
-# Unity Package Template
+# Unity Audio Loader
 
-<img width="100%" alt="Stats" src="https://user-images.githubusercontent.com/9135028/198754538-4dd93fc6-7eb2-42ae-8ac6-d7361c39e6ef.gif"/>
+![npm](https://img.shields.io/npm/v/extensions.unity.audioloader) [![openupm](https://img.shields.io/npm/v/extensions.unity.audioloader?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/extensions.unity.audioloader/) ![License](https://img.shields.io/github/license/IvanMurzak/Unity-AudioLoader) [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
-UPM (Unity Package Manager) ready GitHub repository for Unity. New Unity packages system is very easy to use and make your project much more cleaner. The repository helps you to create your own Unity package with dependecies.
+Async audio loader with two caching layers for Unity.
 
-This is template repository for fast creation package for Unity which possible to import to Unity project through Package Manager in Unity Editor. The repository is universal for `Package Creation` and `Publishing` cycles.
+## Features
 
-### Supported
-  - ✔️ [NPMJS](https://www.npmjs.com/)
-  - ✔️ [OpenUPM](https://openupm.com/)
-  - ✔️ [GitHub Packages](https://github.com/features/packages)
-  - ✔️ [UPM (Unity Package Manager)](https://docs.unity3d.com/Manual/upm-ui.html)
+- ✔️ Async loading from **Web** or **Local** `AudioLoader.LoadAudioClip(audioURL);`
+- ✔️ **Memory** and **Disk** caching - tries to load from memory first, then from disk
+- ✔️ Dedicated thread for disk operations
+- ✔️ Avoids loading same audio multiple times simultaneously, task waits for completion the first and just returns loaded audio if at least one cache layer activated
+- ✔️ Auto set to AudioSource `AudioLoader.SetAudioSource(audioURL, audioSource);`
+- ✔️ Debug level for logging `AudioLoader.settings.debugLevel = DebugLevel.Error;`
 
+# Usage
 
-# Unity Package Creation 
-[![image](https://user-images.githubusercontent.com/9135028/198753285-3d3c9601-0711-43c7-a8f2-d40ec42393a2.png)](https://github.com/IvanMurzak/Unity-Package-Template/generate)
-- Create your own repository on GitHub using this repository as template. Press the green button one line above.
-- Clone fresh created repository and open in Unity
-- Put files which should be packed into package under `Assets/_PackageRoot` folder. Everything outside the folder could be used for testing or demonstrate your plugin 
-<details>
-  <summary>>> Detailed data structure in package root folder</summary>
-  
-  [Unity guidlines](https://docs.unity3d.com/Manual/cus-layout.html) on how to organize files into package root directory
-  
-```
-  <root>
-  ├── package.json
-  ├── README.md
-  ├── CHANGELOG.md
-  ├── LICENSE.md
-  ├── Third Party Notices.md
-  ├── Editor
-  │   ├── [company-name].[package-name].Editor.asmdef
-  │   └── EditorExample.cs
-  ├── Runtime
-  │   ├── [company-name].[package-name].asmdef
-  │   └── RuntimeExample.cs
-  ├── Tests
-  │   ├── Editor
-  │   │   ├── [company-name].[package-name].Editor.Tests.asmdef
-  │   │   └── EditorExampleTest.cs
-  │   └── Runtime
-  │        ├── [company-name].[package-name].Tests.asmdef
-  │        └── RuntimeExampleTest.cs
-  ├── Samples~
-  │        ├── SampleFolder1
-  │        ├── SampleFolder2
-  │        └── ...
-  └── Documentation~
-       └── [package-name].md
+In main thread somewhere at start of the project need to call `AudioLoader.Init();` once to initialize static properties in right thread. It is required to make in main thread. Then you can use `AudioLoader` from any thread and any time.
+
+## Sample - Loading audio file, set to AudioSource
+
+``` C#
+using Extensions.Unity.AudioLoader;
+using Cysharp.Threading.Tasks;
+
+public class AudioLoaderSample : MonoBehaviour
+{
+    [SerializeField] string audioURL;
+    [SerializeField] AudioSource audioSource;
+
+    async void Start()
+    {
+        // Loading sprite from web, cached for quick load next time
+        audioSource.clip = await AudioLoader.LoadAudioClip(audioURL);
+
+        // Same loading with auto set to audio
+        await AudioLoader.SetAudioSource(audioURL, audioSource);
+    }
+}
 ```
 
-</details>
+## Sample - Loading audio into multiple Audio components
 
-### Edit `Assets/_packageRoot/package.json` 
+``` C#
+using Extensions.Unity.AudioLoader;
+using Cysharp.Threading.Tasks;
 
-#### Required steps
-- change `name` in format `my.packge.name.hello.world`
-- change `displayName`, `version`, `description` to any
-- change `unity` to setup minumum supported Unity version
+public class AudioLoaderSample : MonoBehaviour
+{
+    [SerializeField] string audioURL;
+    [SerializeField] AudioSource audioSource1;
+    [SerializeField] AudioSource audioSource2;
 
-#### Optional steps
-- add yourself as an author in format `"author": { "name": "Ivan Murzak", "url": "https://github.com/IvanMurzak" },`
-- advanced editing and format `package.json` - read more about NPM package format [here](https://docs.npmjs.com/cli/v8/configuring-npm/package-json)
+    void Start()
+    {
+        // Loading with auto set to audio
+        AudioLoader.SetAudioSource(audioURL, audioSource1, audioSource2).Forget();
+    }
+}
+```
 
+# Cache
 
-# Publishing
-There are many platforms to publish your Package. You can read more about all alternative variants and their pros and cons [here](https://github.com/IvanMurzak/Unity-Package-Template/blob/master/AlternativeDestributionOptions.md) (OPTIONAL). This tutorial is targeted on NPMJS deployment.
+Cache system based on the two layers. First layer is **memory cache**, second is **disk cache**. Each layer could be enabled or disabled. Could be used without caching at all. By default both layers are enabled.
 
-### Preparation (just once)
-- Install [NPM](https://nodejs.org/en/download/)
-- Create [NPMJS](https://npmjs.com) account
-- Execute script in Unity project `npmAddUser.bat` and sign-in to your account
-<details>
-  <summary>>> npmAddUser.bat script content</summary>
+## Setup Cache
+
+- `AudioLoader.settings.useMemoryCache = true;` default value is `true`
+- `AudioLoader.settings.useDiskCache = true;` default value is `true`
   
-  It executes `npm adduser` command in package root folder
-  
-  ```
-cd Assets/_PackageRoot
-npm adduser
-  ```
-  
-</details>
+Change disk cache folder:
 
-### Deploy
-Make sure you finished editing `package.json` and files in `Assets/_PackageRoot` folder. Because it is going to be public with no ability to discard it
-- Don't forget to increment `version` in `package.json` file. Versions lower than `1.0.0` gonna be showen in Unity as "preview"
-- Execute script in Unity project `npmPublish.bat` to publish your package to public
+``` C#
+AudioLoader.settings.diskSaveLocation = Application.persistentDataPath + "/myCustomFolder";
+```
 
-<details>
-  <summary>>> npmPublish.bat script content</summary>
-  
-  First line in the script copies the `README.md` file to package root. Because the README should be in a package also, that is a part of package format.
-  It executes `npm publish` command in package root folder. The command publishes your package to NPMJS platform automatically
-  
-  ```
-xcopy .\README.md .\Assets\_PackageRoot\README.md /y
-cd Assets\_PackageRoot
-npm publish
-pause
-  ```
-  
-</details>
+## Override Cache
 
+``` C#
+// Override Memory cache for specific audio
+AudioLoader.SaveToMemoryCache(url, audioClip);
 
-# Installation 
-When you package is distributed, you can install it into any Unity project. 
+// Take from Memory cache for specific audio file if exists
+AudioLoader.LoadFromMemoryCache(url);
+```
+
+## Does Cache contain audio
+
+``` C#
+// Check if any cache contains specific audio file
+AudioLoader.CacheContains(url);
+
+// Check if Memory cache contains specific audio file
+AudioLoader.MemoryCacheContains(url);
+
+// Check if Memory cache contains specific audio file
+AudioLoader.DiskCacheContains(url);
+```
+
+## Clear Cache
+
+``` C#
+// Clear memory Memory and Disk cache
+AudioLoader.ClearCache();
+
+// Clear only Memory cache for all audio files
+AudioLoader.ClearMemoryCache();
+
+// Clear only Memory cache for specific audio file
+AudioLoader.ClearMemoryCache(url);
+
+// Clear only Disk cache for all audio files
+AudioLoader.ClearDiskCache();
+
+// Clear only Disk cache for specific audio file
+AudioLoader.ClearDiskCache(url);
+```
+
+# Installation
 
 - [Install OpenUPM-CLI](https://github.com/openupm/openupm-cli#installation)
 - Open command line in Unity project folder
-- `openupm --registry https://registry.npmjs.org add YOUR_PACKAGE_NAME`
+- Run the command
 
-
-# Final view in Package Manager
-
-![image](https://user-images.githubusercontent.com/9135028/198777922-fdb71949-aee7-49c8-800f-7db885de9453.png)
+``` CLI
+openupm add extensions.unity.audioloader
+```

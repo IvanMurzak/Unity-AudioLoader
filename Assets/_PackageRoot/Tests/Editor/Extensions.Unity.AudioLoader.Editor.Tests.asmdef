@@ -1,0 +1,19 @@
+{
+    "name": "Extensions.Unity.AudioLoader.Editor.Tests",
+    "rootNamespace": "Extensions.Unity.AudioLoader.Editor.Tests",
+    "references": [
+        "Extensions.Unity.AudioLoader",
+        "UniTask"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
