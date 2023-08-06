@@ -9,9 +9,9 @@ namespace Extensions.Unity.AudioLoader.Tests
     {
         static readonly string[] AudioURLs =
         {
-            "https://github.com/IvanMurzak/Unity-ImageLoader/raw/master/Test%20Audio%Files/sample.aiff",
-            "https://github.com/IvanMurzak/Unity-ImageLoader/raw/master/Test%20Audio%Files/sample.mp3",
-            "https://github.com/IvanMurzak/Unity-ImageLoader/raw/master/Test%20Audio%Files/sample.wav"
+            "https://github.com/IvanMurzak/Unity-AudioLoader/raw/master/Test%20Audio%20Files/sample.aiff",
+            "https://github.com/IvanMurzak/Unity-AudioLoader/raw/master/Test%20Audio%20Files/sample.mp3",
+            "https://github.com/IvanMurzak/Unity-AudioLoader/raw/master/Test%20Audio%20Files/sample.wav"
         };
 
         public async UniTask LoadAudioClip(string url)
