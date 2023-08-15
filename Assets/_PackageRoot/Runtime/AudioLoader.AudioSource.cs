@@ -7,9 +7,9 @@ namespace Extensions.Unity.AudioLoader
     public static partial class AudioLoader
     {
         /// <summary>
-        /// Load audio file from URL and set it to the Image component
+        /// Load audio file from URL and set it to the AudioSource component
         /// </summary>
-        /// <param name="url">URL to the picture, web or local</param>
+        /// <param name="url">URL to the audio file, web or local</param>
         /// <param name="audioSource">AudioSource component from Unity UI</param>
         /// <param name="ignoreImageNotFoundError">Ignore error if the audio file was not found by specified url</param>
         /// <returns>Returns async task</returns>
@@ -44,7 +44,7 @@ namespace Extensions.Unity.AudioLoader
         }
 
         /// <summary>
-        /// Load audio file from URL and set it to the Image components
+        /// Load audio file from URL and set it to the AudioSource components
         /// </summary>
         /// <param name="url">URL to the audio file, web or local</param>
         /// <param name="audioSources">Array of AudioSource components from Unity UI</param>
@@ -53,7 +53,7 @@ namespace Extensions.Unity.AudioLoader
             => SetAudioSource(url, false, audioSources);
 
         /// <summary>
-        /// Load audio file from URL and set it to the Image components
+        /// Load audio file from URL and set it to the AudioSource components
         /// </summary>
         /// <param name="url">URL to the audio file, web or local</param>
         /// <param name="ignoreAudioFileNotFoundError">Ignore error if the audio file was not found by specified url</param>
@@ -65,7 +65,7 @@ namespace Extensions.Unity.AudioLoader
                 return;
 
             var audioClip = await LoadAudioClip(url, ignoreAudioFileNotFoundError);
-            UniTask.Post((Action)(() =>
+            UniTask.Post(() =>
             {
                 for (var i = 0; i < audioSources.Length; i++)
                 {
@@ -82,7 +82,7 @@ namespace Extensions.Unity.AudioLoader
                             Debug.LogException(e); 
                     }
                 }
-            }));
+            });
         }
     }
 }
