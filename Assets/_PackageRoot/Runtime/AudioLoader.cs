@@ -121,10 +121,20 @@ namespace Extensions.Unity.AudioLoader
 
             RemoveLoading(url);
 
-            if (request.isNetworkError || request.isHttpError)
+#if UNITY_2020_1_OR_NEWER
+            var isError = request.result != UnityWebRequest.Result.Success;
+#else
+            var isError = request.isNetworkError || request.isHttpError;
+#endif
+
+            if (isError)
             {
                 if (settings.debugLevel <= DebugLevel.Error)
+#if UNITY_2020_1_OR_NEWER
+                    Debug.LogError($"[AudioLoader] {request.result} {request.error}: url={url}");
+#else
                     Debug.LogError($"[AudioLoader] {request.error}: url={url}");
+#endif
                 return null;
             }
             else
