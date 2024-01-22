@@ -4,18 +4,20 @@
 
 Async audio loader with two caching layers for Unity.
 
+![Image Loader](https://github.com/IvanMurzak/Unity-AudioLoader/blob/master/Header.jpg?raw=true)
+
 ## Features
 
 - ✔️ Async loading from **Web** or **Local** `AudioLoader.LoadAudioClip(audioURL);`
 - ✔️ **Memory** and **Disk** caching - tries to load from memory first, then from disk
 - ✔️ Dedicated thread for disk operations
-- ✔️ Avoids loading same audio multiple times simultaneously, task waits for completion the first and just returns loaded audio if at least one cache layer activated
+- ✔️ Avoids loading same audio multiple times simultaneously, a task waits for completion the first and just returns loaded audio if at least one cache layer activated
 - ✔️ Auto set to AudioSource `AudioLoader.SetAudioSource(audioURL, audioSource);`
 - ✔️ Debug level for logging `AudioLoader.settings.debugLevel = DebugLevel.Error;`
 
 # Usage
 
-In main thread somewhere at start of the project need to call `AudioLoader.Init();` once to initialize static properties in right thread. It is required to make in main thread. Then you can use `AudioLoader` from any thread and any time.
+In the main thread somewhere at the start of the project need to call `AudioLoader.Init();` once to initialize static properties in the right thread. It is required to be made in the main thread. Then you can use `AudioLoader` from any thread and at any time.
 
 ## Sample - Loading audio file, set to AudioSource
 
@@ -61,7 +63,7 @@ public class AudioLoaderSample : MonoBehaviour
 
 # Cache
 
-Cache system based on the two layers. First layer is **memory cache**, second is **disk cache**. Each layer could be enabled or disabled. Could be used without caching at all. By default both layers are enabled.
+Cache system based on the two layers. The first layer is **memory cache**, and the second is **disk cache**. Each layer could be enabled or disabled. It could be used without caching at all. By default, both layers are enabled.
 
 ## Setup Cache
 
