@@ -1,0 +1,31 @@
+{
+  "name": "extensions.unity.audioloader",
+  "displayName": "Audio Loader",
+  "author": {
+    "name": "Ivan Murzak",
+    "url": "https://github.com/IvanMurzak"
+  },
+  "version": "1.0.4",
+  "unity": "2019.2",
+  "description": "Asynchronous audio loading from remote or local destination. It has two layers of configurable cache system: RAM and Disk.",
+  "keywords": [
+    "audio",
+    "loader",
+    "async",
+    "cache",
+    "unity"
+  ],
+  "dependencies": {
+    "com.cysharp.unitask": "2.3.3"
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp",
+        "extensions.unity"
+      ]
+    }
+  ]
+}

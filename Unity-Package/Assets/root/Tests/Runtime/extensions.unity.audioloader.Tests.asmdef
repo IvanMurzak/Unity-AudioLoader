@@ -1,0 +1,20 @@
+{
+    "name": "extensions.unity.audioloader.Tests",
+    "references": [
+        "UnityEngine.TestRunner",
+        "extensions.unity.audioloader.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
