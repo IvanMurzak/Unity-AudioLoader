@@ -1,0 +1,34 @@
+"Installer/Assets/Audio Loader Installer/Installer.Manifest.cs"
+  s_5d880819cb1fc0::t_434baf46ec045b 35-36
+Unity-Package/Assets/root/package.json
+  s_5d880819cb1fc0::t_9f67d74dd572b5 1-31
+"Installer/Assets/Audio Loader Installer/Installer.cs"
+  s_5d880819cb1fc0::t_2e944b554bb14a 19
+Unity-Package/Assets/root/Tests/Editor/extensions.unity.audioloader.Editor.Tests.asmdef
+  s_5d880819cb1fc0::t_0506483d0c047a 7-8
+Unity-Package/Assets/root/Editor/Scripts/extensions.unity.audioloader.Editor.asmdef
+  s_5d880819cb1fc0::t_7a5b7f3908dce6 3-6
+Unity-Package/Packages/manifest.json
+  s_5d880819cb1fc0::t_99795e9cffee64 37-43
+  s_5d880819cb1fc0::t_bfbe4bd61cb7d5 6
+Unity-Package/Assets/root/Runtime/extensions.unity.audioloader.Runtime.asmdef
+  s_5d880819cb1fc0::t_9d0eaf0fa67203 1-16
+Unity-Package/Assets/root/README.md
+  s_5d880819cb1fc0::t_e0ce87a9c6f835 1-158
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "d9da37a2c483bfe99452aa376b17235bc83a29c3",
+  "prompts": {},
+  "sessions": {
+    "s_5d880819cb1fc0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0bda062b-b787-49fc-8c25-2221ccb4e592",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ivan Murzak <Ivan.D.Murzak@gmail.com>"
+    }
+  }
+}
