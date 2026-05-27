@@ -48,18 +48,6 @@ $VersionFiles = @(
         Pattern     = 'public const string Version = "[\d\.]+";'
         Replace     = 'public const string Version = "{VERSION}";'
         Description = "Installer C# version constant"
-    },
-    @{
-        Path        = "Unity-Package/Assets/root/README.md"
-        Pattern     = "https://github\.com/IvanMurzak/Unity-AudioLoader/releases/download/[\d\.]+/Audio-Loader-Installer\.unitypackage"
-        Replace     = "https://github.com/IvanMurzak/Unity-AudioLoader/releases/download/{VERSION}/Audio-Loader-Installer.unitypackage"
-        Description = "Package README download URL"
-    },
-    @{
-        Path        = "README.md"
-        Pattern     = "https://github\.com/IvanMurzak/Unity-AudioLoader/releases/download/[\d\.]+/Audio-Loader-Installer\.unitypackage"
-        Replace     = "https://github.com/IvanMurzak/Unity-AudioLoader/releases/download/{VERSION}/Audio-Loader-Installer.unitypackage"
-        Description = "Repository README download URL"
     }
 )
 

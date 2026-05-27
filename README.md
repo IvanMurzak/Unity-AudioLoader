@@ -120,7 +120,7 @@ AudioLoader.ClearDiskCache(url);
 
 ### Option 1 - Installer
 
-- **[⬇️ Download Installer](https://github.com/IvanMurzak/Unity-AudioLoader/releases/download/1.0.4/Audio-Loader-Installer.unitypackage)**
+- **[⬇️ Download Installer](https://github.com/IvanMurzak/Unity-AudioLoader/releases/latest/download/Audio-Loader-Installer.unitypackage)**
 - **📂 Import installer into Unity project**
   > - You may use double click on the file - Unity will open it
   > - OR: You may open Unity Editor first, then click on `Assets/Import Package/Custom Package`, then choose the file
