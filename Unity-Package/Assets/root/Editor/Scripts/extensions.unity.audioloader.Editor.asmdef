@@ -1,0 +1,19 @@
+{
+    "name": "extensions.unity.audioloader.Editor",
+    "rootNamespace": "Extensions.Unity.AudioLoader",
+    "references": [
+        "extensions.unity.audioloader.Runtime",
+        "UniTask"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
