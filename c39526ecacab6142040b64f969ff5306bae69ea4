@@ -1,0 +1,23 @@
+Unity-Package/Assets/root/Tests/Editor/TestLoading.cs
+  s_5d880819cb1fc0::t_31596e4eba8541 12-14
+.github/workflows/release.yml
+  s_5d880819cb1fc0::t_c0301752d56991 165
+Unity-Package/Assets/root/Tests/Editor/TestCache.cs
+  s_5d880819cb1fc0::t_31596e4eba8541 12-14
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "c39526ecacab6142040b64f969ff5306bae69ea4",
+  "prompts": {},
+  "sessions": {
+    "s_5d880819cb1fc0": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "0bda062b-b787-49fc-8c25-2221ccb4e592",
+        "model": "claude-opus-4-7"
+      },
+      "human_author": "Ivan Murzak <Ivan.D.Murzak@gmail.com>"
+    }
+  }
+}
