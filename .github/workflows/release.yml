@@ -162,6 +162,7 @@ jobs:
           buildName: Audio-Loader-Installer
           buildsPath: build
           buildMethod: extensions.unity.audioloader.Installer.PackageExporter.ExportPackage
+          allowDirtyBuild: true
           customParameters: -CI true -GITHUB_ACTIONS true
 
       - name: Upload Unity Package as artifact
