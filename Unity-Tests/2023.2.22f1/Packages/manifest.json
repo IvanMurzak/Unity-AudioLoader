@@ -42,6 +42,7 @@
       "name": "package.openupm.com",
       "url": "https://package.openupm.com",
       "scopes": [
+        "com.cysharp",
         "com.ivanmurzak",
         "extensions.unity",
         "org.nuget"
